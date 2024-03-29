@@ -6,7 +6,7 @@
 
 # dependencies
 frontend/node_modules
-frontend//.pnp
+frontend/.pnp
 frontend/.pnp.js
 frontend/.yarn/install-state.gz
 
@@ -14,8 +14,8 @@ frontend/.yarn/install-state.gz
 frontend//coverage
 
 # next.js
-frontend//.next/
-frontend//out/
+frontend/.next/
+frontend/out/
 
 # production
 frontend//build
