@@ -1,5 +1,7 @@
 // import link react component
 import Link from 'next/link';
+// import styles
+import '../../styles/components/header.module.scss';
 
 export default function Header() {
 	return (
