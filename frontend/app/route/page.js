@@ -1,3 +1,3 @@
-export default function Page() {
-    return <h1>ROUTE</h1>
+export default function TravelRoute() {
+	return <h1>REISEROUTE</h1>;
 }
