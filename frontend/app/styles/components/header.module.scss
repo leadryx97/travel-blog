@@ -1,0 +1,17 @@
+// import variables
+@import '../abstracts/variables.module';
+
+.header {
+	height: 100px;
+	background: $gradient;
+}
+
+.nav {
+	&__menu {
+		margin: 0;
+		list-style: none;
+	}
+	&__link {
+		text-decoration: none;
+	}
+}
