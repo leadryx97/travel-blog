@@ -1,3 +1,3 @@
-export default function Page() {
-    return <h1>BEITRÄGE</h1>
-  }
+export default function Posts() {
+	return <h1>BEITRÄGE</h1>;
+}
