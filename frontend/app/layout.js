@@ -8,20 +8,10 @@ export const metadata = {
 	description: 'Verfolge unsere Abenteuer',
 };
 
-/* next.js initial code
 export default function RootLayout({ children }) {
-  return (
-    <html lang="de-CH">
-      <body className={inter.className}>{children}</body>
-    </html>
-  );
+	return (
+		<html lang="de-CH">
+			<body className={inter.className}>{children}</body>
+		</html>
+	);
 }
-*/
-
-const rootLayout = ({ children }) => (
-	<html lang="de-CH">
-		<body className={inter.className}>{children}</body>
-	</html>
-);
-
-export default rootLayout;
