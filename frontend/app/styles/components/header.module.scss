@@ -1,17 +1,89 @@
 // import variables
 @import '../abstracts/variables.module';
+// import mixins
+@import '../abstracts/mixins.module';
 
+// header styles
 .header {
 	height: 100px;
 	background: $gradient;
 }
-
-.nav {
-	&__menu {
-		margin: 0;
-		list-style: none;
+// hamburger styles
+.hamburger {
+	background-color: $base-primary;
+	height: 100px;
+	width: 100px;
+	border-radius: 50%;
+	top: -40px;
+	left: -40px;
+	position: fixed;
+	overflow: hidden;
+	z-index: 9;
+	@include for-size(large) {
+		display: none;
 	}
+	// hamburger icon styles
+	&__icon {
+		position: absolute;
+		top: 48px;
+		left: 48px;
+	}
+	// hamburger close icon styles
+	&__iconClosed {
+		position: absolute;
+		top: 44px;
+		left: 44px;
+		z-index: 10;
+	}
+}
+// navigation styles
+.nav {
+	// navigation container styles
+	&__container {
+		height: 100vh;
+		width: 100vw;
+		background-color: $secondary;
+		position: fixed;
+		@include for-size(large) {
+			height: 100px;
+			width: auto;
+			background-color: none;
+		}
+		// make navigation responsiv
+		&Hidden {
+			display: none;
+			@include for-size(large) {
+				display: block;
+			}
+		}
+	}
+	// navigation menu styles
+	&__menu {
+		margin: 90px 0 0 0;
+		padding: 0;
+		list-style: none;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 20px;
+		@include for-size(large) {
+			padding: 15px 15px 0 0;
+			margin: 0;
+			flex-direction: row;
+			justify-content: right;
+			gap: 15px;
+		}
+	}
+	// navigation link styles
 	&__link {
 		text-decoration: none;
+		font: {
+			size: 2.5rem;
+			weight: bold;
+		}
+		color: $base-primary;
+		@include for-size(large) {
+			font-size: 1.25rem;
+		}
 	}
 }
