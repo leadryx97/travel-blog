@@ -1,13 +1,39 @@
 // color variables
 // base (tier 1)
-$base-primary: #ffffff;
-$base-secondary: #000000;
-
+$base-primary: #000000;
+$base-secondary: #ffffff;
 // brand (tier 1)
-$primary: #a594f9;
-$secondary: #cdc1ff;
-$tertiary: #7371fc;
+$primary: #a594f9; // medium purple
+$secondary: #cdc1ff; // light purple
+$tertiary: #7371fc; // dark purple
+// gradient (tier 1)
+$gradient: linear-gradient(
+	90deg,
+	#a594f9 0%,
+	#b5ecf8 76%
+); // gradient purple to blue
 
-// gradient
-/* Rectangle 4 */
-$gradient: linear-gradient(90deg, #a594f9 0%, #b5ecf8 76%);
+// background (tier 2)
+$bg-primary: $primary; // medium purple
+$bg-secondary: $secondary; // light purple
+$bg-tertiary: $tertiary; // dark purple
+$bg-gradient: $gradient; // gradient purple to blue
+
+// text (tier 2)
+$txt-primary: $base-primary; // black
+$txt-secondary: $base-secondary; // white
+$txt-tertiary: $gradient; // gradient purple to blue
+
+// button (tier 2)
+$btn-primary: $tertiary; // dark purple
+$btn-secondary: $base-secondary; // white
+$btn-tertiary: $secondary; // light purple
+
+// typography
+// font family
+$font-family-heading: var(--font-playfairDisplay), Verdana, sans-serif;
+$font-family-body: 'Montserrat', Verdana, sans-serif;
+/* font weight */
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
