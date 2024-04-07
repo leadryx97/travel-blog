@@ -10,6 +10,10 @@ import { HiMenuAlt2 } from 'react-icons/hi';
 import { IoClose } from 'react-icons/io5';
 // import useState
 import { useState } from 'react';
+// import next.js image component
+import Image from 'next/image';
+// import header image
+import headerImage from '../../../public/header/header.webp';
 
 function Nav() {
 	const [nav, setNav] = useState(false);
@@ -86,6 +90,13 @@ export default function Header() {
 	return (
 		<header className={styles.header}>
 			<Nav />
+			<div className={styles.header__imageContainer}>
+				<Image
+					src={headerImage}
+					alt="Illustration of map and airplane"
+					className={styles.header__image}
+				/>
+			</div>
 		</header>
 	);
 }
