@@ -5,8 +5,49 @@
 
 // header styles
 .header {
-	height: 100px;
+	height: 350px;
 	background: $gradient;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	@include for-size(medium) {
+		height: 400px;
+	}
+	@include for-size(large) {
+		height: 800px;
+	}
+	@include for-size(x-large) {
+		height: 850px;
+	}
+	@include for-size(xx-large) {
+		height: 1000px;
+	}
+	&__imageContainer {
+		width: 100%;
+		height: 100%;
+		align-self: center;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+	// header image styles
+	&__image {
+		width: 480px;
+		height: auto;
+		align-self: center;
+		@include for-size(medium) {
+			width: 600px;
+		}
+		@include for-size(large) {
+			width: 1200px;
+		}
+		@include for-size(x-large) {
+			width: 1300px;
+		}
+		@include for-size(xx-large) {
+			width: 1500px;
+		}
+	}
 }
 // hamburger styles
 .hamburger {
