@@ -1,6 +1,152 @@
+// import variables
+@import 'abstracts/variables.module';
+// import mixins
+@import 'abstracts/mixins.module';
+
+// import google fonts
+@import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&family=Playfair+Display:wght@700&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+
 *,
 *:before,
 *:after {
 	box-sizing: border-box;
 }
 
+// font
+.h1 {
+	@include font-size(
+		$base-font-size * 3.8,
+		$base-line-height
+	); // multiplies basis font size times 3.8, basis line height
+	font-family: $heading-font;
+	color: $txt-primary; // white
+	text-align: center;
+	// styles for small screens, > 576px
+	@include for-size(small) {
+		@include font-size(
+			$base-font-size * 3.4,
+			$base-line-height
+		); // multiplies basis font size times 3.4, basis line height
+	}
+	// styles for medium screens, > 768px
+	@include for-size(medium) {
+		@include font-size(
+			$base-font-size * 3.2,
+			$base-line-height
+		); // multiplies basis font size times 3.2, basis line height
+	}
+	// styles for large screens, > 992px
+	@include for-size(large) {
+		@include font-size(
+			$base-font-size * 3,
+			$base-line-height
+		); // multiplies basis font size times 3, basis line height
+	}
+	// styles for x-large screens, > 1200px
+	@include for-size(x-large) {
+		@include font-size(
+			$base-font-size * 2.8,
+			$base-line-height
+		); // multiplies basis font size times 2.8, basis line height
+	}
+	// styles for xx-large screens, > 1400px
+	@include for-size(xx-large) {
+		@include font-size(
+			$base-font-size * 2.6,
+			$base-line-height
+		); // multiplies basis font size times 2.6, basis line height
+	}
+}
+.h1--home {
+	@include font-size(
+		$base-font-size * 3.2,
+		$base-line-height
+	); // multiplies basis font size times 3.2, basis line height
+	// sets gradient as text color
+	background: $txt-tertiary; // gradient purple to blue
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	// styles for small screens, > 576px
+	@include for-size(small) {
+		@include font-size(
+			$base-font-size * 3,
+			$base-line-height / 1.3
+		); // multiplies basis font size times 3, divides base line height by 1.3
+	}
+	// styles for medium screens, > 768px
+	@include for-size(medium) {
+		@include font-size(
+			$base-font-size * 2.6,
+			$base-line-height
+		); // multiplies basis font size times 2.6, basis line height
+	}
+	// styles for large screens, > 992px
+	@include for-size(large) {
+		@include font-size(
+			$base-font-size * 2.4,
+			$base-line-height
+		); // multiplies basis font size times 2.4, basis line height
+	}
+	// styles for x-large screens, > 1200px
+	@include for-size(x-large) {
+		@include font-size(
+			$base-font-size * 2.2,
+			$base-line-height
+		); // multiplies basis font size times 2.2, basis line height
+	}
+	// styles for xx-large screens, > 1400px
+	@include for-size(xx-large) {
+		@include font-size(
+			$base-font-size * 2.2,
+			$base-line-height
+		); // multiplies basis font size times 2.2, basis line height
+	}
+}
+.h2 {
+	@include font-size(
+		$base-font-size * 1.9,
+		$base-line-height
+	); // multiplies basis font size times 1.9, basis line height
+	font-family: $heading-font;
+	// styles for small screens, > 576px
+	@include for-size(small) {
+		@include font-size(
+			$base-font-size * 1.7,
+			$base-line-height / 1.3
+		); // multiplies basis font size times 1.7, divides base line height by 1.3
+	}
+	// styles for medium screens, > 768px
+	@include for-size(medium) {
+		@include font-size(
+			$base-font-size * 1.5,
+			$base-line-height
+		); // multiplies basis font size times 1.5, basis line height
+	}
+	// styles for large screens, > 992px
+	@include for-size(large) {
+		@include font-size(
+			$base-font-size * 1.3,
+			$base-line-height
+		); // multiplies basis font size times 1.3, basis line height
+	}
+	// styles for x-large screens, > 1200px
+	@include for-size(x-large) {
+		@include font-size(
+			$base-font-size * 1.1,
+			$base-line-height
+		); // multiplies basis font size times 1.1, basis line height
+	}
+	// styles for xx-large screens, > 1400px
+	@include for-size(xx-large) {
+		@include font-size(
+			$base-font-size * 1,
+			$base-line-height
+		); // multiplies basis font size times 1.1, basis line height
+	}
+}
+.p {
+	@include font-size(
+		$base-font-size,
+		$base-line-height
+	); // basis font size, basis line height
+}
