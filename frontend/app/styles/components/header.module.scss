@@ -118,14 +118,27 @@
 	// navigation link styles
 	&__link {
 		text-decoration: none;
+		@include font-size($base-font-size * 2.7, $base-line-height);
 		font: {
-			size: 2.5rem;
 			weight: bold;
-			family: var(--font-playfairDisplay);
+			family: $heading-font;
 		}
 		color: $txt-secondary;
+		// styles for medium screens, > 768px
+		@include for-size(medium) {
+			@include font-size($base-font-size * 2.9, $base-line-height);
+		} // multiplies basis font size times 2.9, basis line height
+		// styles for large screens, > 992px
 		@include for-size(large) {
-			font-size: 1.25rem;
-		}
+			@include font-size($base-font-size * 1.2, $base-line-height);
+		} // multiplies basis font size times 1.2, basis line height
+		// styles for x-large screens, > 1200px
+		@include for-size(x-large) {
+			@include font-size($base-font-size * 1.4, $base-line-height);
+		} // multiplies basis font size times 1.4, basis line height
+		// styles for xx-large screens, > 1400px
+		@include for-size(xx-large) {
+			@include font-size($base-font-size * 1.6, $base-line-height);
+		} // multiplies basis font size times 1.6, basis line height
 	}
 }
