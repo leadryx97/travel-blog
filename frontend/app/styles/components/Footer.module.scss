@@ -1,0 +1,14 @@
+// import variables
+@import '../abstracts/variables.module';
+// import mixins
+@import '../abstracts/mixins.module';
+
+.footer {
+	height: 50px;
+	background-color: $bg-secondary;
+	display: flex;
+	justify-content: center;
+	&__text {
+		color: $txt-secondary;
+	}
+}
