@@ -6,21 +6,25 @@
 // header styles
 .header {
 	height: 350px;
-	background: $bg-gradient;
+	background: $bg-gradient; // gradient blue to purple
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
+	// styles for medium screens, > 768px
 	@include for-size(medium) {
 		height: 400px;
 	}
+	// styles for large screens, > 992px
 	@include for-size(large) {
-		height: 800px;
+		height: 600px;
 	}
+	// styles for x-large screens, > 1200px
 	@include for-size(x-large) {
-		height: 850px;
+		height: 620px;
 	}
+	// styles for xx-large screens, > 1400px
 	@include for-size(xx-large) {
-		height: 1000px;
+		height: 650px;
 	}
 	&__imageContainer {
 		width: 100%;
@@ -35,17 +39,21 @@
 		width: 480px;
 		height: auto;
 		align-self: center;
+		// styles for medium screens, > 768px
 		@include for-size(medium) {
 			width: 600px;
 		}
+		// styles for large screens, > 992px
 		@include for-size(large) {
-			width: 1200px;
+			width: 830px;
 		}
+		// styles for x-large screens, > 1200px
 		@include for-size(x-large) {
-			width: 1300px;
+			width: 920px;
 		}
+		// styles for xx-large screens, > 1400px
 		@include for-size(xx-large) {
-			width: 1500px;
+			width: 950px;
 		}
 	}
 }
@@ -60,21 +68,68 @@
 	position: fixed;
 	overflow: hidden;
 	z-index: 9;
+	// styles for small screens, > 576px
+	@include for-size(small) {
+		height: 112px;
+		width: 112px;
+		top: -45px;
+		left: -45px;
+	}
+	// styles for medium screens, > 768px
+	@include for-size(medium) {
+		height: 120px;
+		width: 120px;
+		top: -48px;
+		left: -48px;
+	}
+	// styles for large screens, > 992px
 	@include for-size(large) {
 		display: none;
 	}
 	// hamburger icon styles
 	&__icon {
 		position: absolute;
+		width: 40px;
+		height: 40px;
 		top: 48px;
 		left: 48px;
+		// styles for small screens, > 576px
+		@include for-size(small) {
+			width: 48px;
+			height: 48px;
+			top: 52px;
+			left: 52px;
+		}
+		// styles for medium screens, > 768px
+		@include for-size(medium) {
+			height: 53px;
+			width: 53px;
+			top: 54px;
+			left: 54px;
+		}
 	}
 	// hamburger close icon styles
 	&__iconClosed {
 		position: absolute;
+		width: 45px;
+		height: 45px;
 		top: 44px;
 		left: 44px;
 		z-index: 10;
+		// styles for small screens, > 576px
+		@include for-size(small) {
+			width: 52px;
+			height: 52px;
+			top: 48px;
+			left: 48px;
+		}
+		// styles for medium screens, > 768px
+		@include for-size(medium) {
+			height: 56px;
+			width: 56px;
+			top: 51px;
+			left: 51px;
+		}
 	}
 }
 // navigation styles
@@ -83,8 +138,9 @@
 	&__container {
 		height: 100vh;
 		width: 100vw;
-		background-color: $bg-secondary;
+		background-color: $bg-secondary; // light purple
 		position: fixed;
+		// styles for large screens, > 992px
 		@include for-size(large) {
 			height: 100px;
 			width: auto;
@@ -93,6 +149,7 @@
 		// make navigation responsiv
 		&Hidden {
 			display: none;
+			// styles for large screens, > 992px
 			@include for-size(large) {
 				display: block;
 			}
@@ -107,6 +164,7 @@
 		flex-direction: column;
 		align-items: center;
 		gap: 20px;
+		// styles for large screens, > 992px
 		@include for-size(large) {
 			padding: 15px 15px 0 0;
 			margin: 0;
@@ -118,27 +176,34 @@
 	// navigation link styles
 	&__link {
 		text-decoration: none;
-		@include font-size($base-font-size * 2.7, $base-line-height);
+		@include font-size(
+			$base-font-size * 2.7,
+			$base-line-height
+		); // multiplies basis font size times 2.7, basis line height
 		font: {
 			weight: bold;
 			family: $heading-font;
 		}
-		color: $txt-secondary;
+		color: $txt-secondary; // white
+		// styles for small screens, > 576px
+		@include for-size(small) {
+			@include font-size($base-font-size * 2.2, $base-line-height);
+		} // multiplies basis font size times 2.2, basis line height
 		// styles for medium screens, > 768px
 		@include for-size(medium) {
-			@include font-size($base-font-size * 2.9, $base-line-height);
-		} // multiplies basis font size times 2.9, basis line height
+			@include font-size($base-font-size * 2.3, $base-line-height);
+		} // multiplies basis font size times 2.3, basis line height
 		// styles for large screens, > 992px
 		@include for-size(large) {
-			@include font-size($base-font-size * 1.2, $base-line-height);
-		} // multiplies basis font size times 1.2, basis line height
+			@include font-size($base-font-size, $base-line-height);
+		} // basis font size, basis line height
 		// styles for x-large screens, > 1200px
 		@include for-size(x-large) {
-			@include font-size($base-font-size * 1.4, $base-line-height);
-		} // multiplies basis font size times 1.4, basis line height
+			@include font-size($base-font-size * 1.1, $base-line-height);
+		} // multiplies basis font size times 1.1, basis line height
 		// styles for xx-large screens, > 1400px
 		@include for-size(xx-large) {
-			@include font-size($base-font-size * 1.6, $base-line-height);
-		} // multiplies basis font size times 1.6, basis line height
+			@include font-size($base-font-size, $base-line-height);
+		} // basis font size, basis line height
 	}
 }
