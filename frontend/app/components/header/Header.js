@@ -24,16 +24,11 @@ function Nav() {
 					<button onClick={() => setNav(!nav)}>
 						{nav ? (
 							<IoClose
-								size={44}
 								color="#7371fc"
 								className={styles.hamburger__iconClosed}
 							/>
 						) : (
-							<HiMenuAlt2
-								size={40}
-								color="#7371fc"
-								className={styles.hamburger__icon}
-							/>
+							<HiMenuAlt2 color="#7371fc" className={styles.hamburger__icon} />
 						)}
 					</button>
 				</div>
