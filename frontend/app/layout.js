@@ -4,6 +4,8 @@ import './styles/main.scss';
 import { Roboto_Flex } from 'next/font/google';
 // import header
 import Header from './components/header/Header';
+// import footer
+import Footer from './components/footer/Footer';
 
 // declare font variable
 export const robotoFlex = Roboto_Flex({ subsets: ['latin'] });
@@ -21,6 +23,7 @@ export default function RootLayout({ children }) {
 			<body className={robotoFlex.className}>
 				<Header />
 				{children}
+				<Footer />
 			</body>
 		</html>
 	);
