@@ -45,6 +45,11 @@
         "post.text",
         "post.video"
       ]
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "Title",
+      "required": true
     }
   }
 }
