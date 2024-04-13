@@ -13,19 +13,14 @@ export function ImageItem({ imgSrc, imgAlt, imgCaption }) {
 export default function ImageSlider({ images }) {
 	return (
 		<div className="imageSlider">
-			{images.map(
-				(image, index) => (
-					console.log('IMG URL CHECK:', image.attributes.url),
-					(
-						<ImageItem
-							key={index}
-							imgSrc={'http://localhost:1337' + image.attributes.url}
-							imgAlt={image.attributes.alternativeText}
-							imgCaption={image.attributes.caption}
-						/>
-					)
-				)
-			)}
+			{images.map((image, index) => (
+				<ImageItem
+					key={index}
+					imgSrc={'http://localhost:1337' + image.attributes.url}
+					imgAlt={image.attributes.alternativeText}
+					imgCaption={image.attributes.caption}
+				/>
+			))}
 		</div>
 	);
 }
