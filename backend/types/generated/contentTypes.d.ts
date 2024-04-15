@@ -378,10 +378,17 @@ export interface ApiPostPost extends Schema.CollectionType {
     CoverImage: Attribute.Media & Attribute.Required;
     Intro: Attribute.Text & Attribute.Required;
     Date: Attribute.Date & Attribute.Required;
-    Content: Attribute.Text & Attribute.Required;
+    Content: Attribute.Blocks;
     Blocks: Attribute.DynamicZone<
-      ['post.image-slider', 'post.single-image', 'post.text', 'post.video']
+      [
+        'post.image-slider',
+        'post.single-image',
+        'post.text',
+        'post.video',
+        'post.you-tube-video'
+      ]
     >;
+    oembed: Attribute.Text & Attribute.CustomField<'plugin::oembed.oembed'>;
     slug: Attribute.UID<'api::post.post', 'Title'> & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

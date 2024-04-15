@@ -41,6 +41,17 @@ export interface PostVideo extends Schema.Component {
   };
 }
 
+export interface PostYouTubeVideo extends Schema.Component {
+  collectionName: 'components_post_you_tube_videos';
+  info: {
+    displayName: 'YouTubeVideo';
+    icon: 'play';
+  };
+  attributes: {
+    YouTubeVideo: Attribute.Blocks;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -48,6 +59,7 @@ declare module '@strapi/types' {
       'post.single-image': PostSingleImage;
       'post.text': PostText;
       'post.video': PostVideo;
+      'post.you-tube-video': PostYouTubeVideo;
     }
   }
 }
