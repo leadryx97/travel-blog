@@ -6,6 +6,14 @@ import TextBlock from './TextBlock';
 import SingleImage from './SingleImage';
 // import image slider component
 import ImageSlider from './ImageSlider';
+// import video component
+import Video from './Video';
+// import youtube video component
+import YouTubeVideo from './YouTubeVideo';
+// import BlocksRenderer component
+//import { BlocksRenderer } from '@strapi/blocks-react-renderer';
+// import custom blocks renderer (for content block, which is a rich text field)
+import CustomBlocksRenderer from './CustomBlocksRenderer';
 
 // define blog post component
 // extract slug property with params argument
@@ -13,52 +21,85 @@ export default async function BlogPost({ params }) {
 	const { slug } = params;
 	// fetch blog post data from strapi api
 	const response = await fetch(
-		`http://localhost:1337/api/posts/?[filters][slug]=${slug}&populate[0]=CoverImage&populate[1]=CoverImage.url&populate=Blocks&populate=Blocks.SingleImage.data.attributes.url&populate=Blocks.ImageSlider.data`
+		`http://localhost:1337/api/posts/?[filters][slug]=${slug}&populate[0]=CoverImage&populate[1]=CoverImage.url&populate=Blocks&populate=Blocks.SingleImage.data.attributes.url&populate=Blocks.ImageSlider.data&populate=Blocks.Video.data.attributes.url`
 	);
 	// parse json data from the response body
 	const postData = await response.json();
 	// variable for post data object
 	const post = postData.data;
-
 	// variable for cover image
 	const coverImage = post[0].attributes.CoverImage;
 	// variable for cover image url
 	const coverImageUrl = coverImage.data.attributes.url;
 	// variable for full cover image url
 	const fullImageURL = 'http://localhost:1337' + coverImageUrl;
-
-	const blocks = post[0].attributes.Blocks;
-	const singleImgBlockURLs = [];
-	const singleImgBlockAltText = [];
-	const singleImgBlockCaption = [];
-
-	const ImageSliderElements = [];
-
-	blocks.forEach((block) => {
-		console.log('Component:', block.__component);
-		// Check if the block is a single image component and if SingleImage property exists
-		if (block.__component === 'post.single-image' && block.SingleImage) {
-			// Access the SingleImage property and then the data property and then the attributes property and then the url property
-			const singleImageBlock = block.SingleImage.data.attributes.url;
-			const singleImageBlockURL = 'http://localhost:1337' + singleImageBlock;
-			singleImgBlockURLs.push(singleImageBlockURL);
-
-			const singleImageBlockAlt =
-				block.SingleImage.data.attributes.alternativeText;
-			singleImgBlockAltText.push(singleImageBlockAlt);
-
-			const singleImgCaption = block.SingleImage.data.attributes.caption;
-			singleImgBlockCaption.push(singleImgCaption);
-		}
-
-		if (block.__component === 'post.image-slider' && block.ImageSlider) {
-			const ImageSliderData = block.ImageSlider.data;
-			ImageSliderElements.push(ImageSliderData);
-		}
-	});
-
 	// variable for cover image alt text
 	const coverImageAlt = coverImage.data.attributes.alternativeText;
+	// variable for dynamic zone (blocks)
+	const blocks = post[0].attributes.Blocks;
+
+	// empty array for single image block urls
+	const singleImgBlockURLs = [];
+	// empty array for single image block alternative texts
+	const singleImgBlockAltText = [];
+	// empty array for single image block captions
+	const singleImgBlockCaption = [];
+	// empty array for image slider data
+	const ImageSliderElements = [];
+	// empty array for video block urls
+	const videoBlockURLs = [];
+	// create empty array for youtube video urls
+	const youtubeVideoId = [];
+
+	// check if youtube video is present in post
+	if (post[0].attributes.oembed) {
+		// parse JSON object of embedded video
+		const oembedData = JSON.parse(post[0].attributes.oembed);
+		// extract video ID from the YouTube URL
+		const urlParts = oembedData.url.split('v=');
+		// add
+		youtubeVideoId.push(urlParts[urlParts.length - 1]);
+	}
+
+	// check if block component exists and add data to the corresponding array
+	blocks.forEach((block) => {
+		// Check if the block is a single image component and if SingleImage property exists
+		if (block.__component === 'post.single-image' && block.SingleImage) {
+			// get the url of the single image block
+			const singleImageBlock = block.SingleImage.data.attributes.url;
+			// create full url of the image
+			const singleImageBlockURL = 'http://localhost:1337' + singleImageBlock;
+			// add url to the singleImgBlockURLs array
+			singleImgBlockURLs.push(singleImageBlockURL);
+
+			// get alternative text of single image block
+			const singleImageBlockAlt =
+				block.SingleImage.data.attributes.alternativeText;
+			// add alt text to the singleImageBlockAlt array
+			singleImgBlockAltText.push(singleImageBlockAlt);
+
+			// get caption of single image block
+			const singleImgCaption = block.SingleImage.data.attributes.caption;
+			// add caption to the singleImgBlockCaption array
+			singleImgBlockCaption.push(singleImgCaption);
+		}
+		// Check if the block is a image slider component and if image slider property exists
+		else if (block.__component === 'post.image-slider' && block.ImageSlider) {
+			// get data of image slider block
+			const ImageSliderData = block.ImageSlider.data;
+			// add data of image slider to the ImageSliderElements array
+			ImageSliderElements.push(ImageSliderData);
+		}
+		// Check if the block is a video component and if video property exists
+		else if (block.__component === 'post.video' && block.Video) {
+			// get url of video component
+			const videoBlock = block.Video.data.attributes.url;
+			// create fuil url of the video
+			const videoBlockURL = 'http://localhost:1337' + videoBlock;
+			// add video url to the videoBlockURLs array
+			videoBlockURLs.push(videoBlockURL);
+		}
+	});
 
 	return (
 		<div>
@@ -75,7 +116,17 @@ export default async function BlogPost({ params }) {
 					<h1>{item.attributes.Title}</h1>
 					<p>{item.attributes.Date}</p>
 					<p>{item.attributes.Intro}</p>
-					<p>{item.attributes.Content}</p>
+
+					{/* Render the BlocksRenderer with the content from the post */}
+					<CustomBlocksRenderer content={item.attributes.Content} />
+
+					{/* create youtube embed url with video id */}
+					{item.attributes.oembed && (
+						<YouTubeVideo
+							url={`https://www.youtube.com/embed/${youtubeVideoId}`}
+							title={item.attributes.Title}
+						/>
+					)}
 
 					{/* Iterate over the dynamicZone blocks */}
 					{item.attributes.Blocks.map((block, index) => {
@@ -101,6 +152,9 @@ export default async function BlogPost({ params }) {
 										imgCaption={singleImgBlockCaption[index]}
 									/>
 								);
+							// if there is a video block in the dynamic zone, render Video component
+							case 'post.video':
+								return <Video key={index} url={videoBlockURLs[index]} />;
 							// Add cases for other components as needed
 							default:
 								return null;
