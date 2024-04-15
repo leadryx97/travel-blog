@@ -13,12 +13,12 @@
     "@strapi/plugin-cloud": "4.21.1",
     "@strapi/plugin-i18n": "4.21.1",
     "@strapi/plugin-users-permissions": "4.21.1",
-    "@strapi/strapi": "4.21.1",
+    "@strapi/strapi": "^4.5.6",
     "better-sqlite3": "8.6.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
     "react-router-dom": "5.3.4",
-    "styled-components": "5.3.3"
+    "strapi-plugin-oembed": "^1.2.1",
+    "styled-components": "5.3.3",
+    "tar": "^7.0.0"
   },
   "author": {
     "name": "A Strapi developer"
