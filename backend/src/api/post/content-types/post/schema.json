@@ -34,8 +34,7 @@
       "required": true
     },
     "Content": {
-      "type": "text",
-      "required": true
+      "type": "blocks"
     },
     "Blocks": {
       "type": "dynamiczone",
@@ -43,8 +42,13 @@
         "post.image-slider",
         "post.single-image",
         "post.text",
-        "post.video"
+        "post.video",
+        "post.you-tube-video"
       ]
+    },
+    "oembed": {
+      "type": "customField",
+      "customField": "plugin::oembed.oembed"
     },
     "slug": {
       "type": "uid",
