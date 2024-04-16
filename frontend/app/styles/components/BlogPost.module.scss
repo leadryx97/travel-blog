@@ -1,0 +1,14 @@
+// import variables
+@import '../abstracts/variables.module';
+// import mixins
+@import '../abstracts/mixins.module';
+
+// styles for blog post cover image
+.container {
+	height: 350px;
+	width: 100vw;
+	position: relative;
+	&__coverImage {
+		object-fit: cover;
+	}
+}
