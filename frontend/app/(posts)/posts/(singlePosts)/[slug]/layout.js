@@ -2,8 +2,8 @@
 import '../../../../styles/main.scss';
 // import google font
 import { Roboto_Flex } from 'next/font/google';
-// import header
-import Header from '../../../../components/header/Header';
+// import header for single blog posts
+import HeaderSinglePost from '@/app/components/header/HeaderSinglePost';
 // import footer
 import Footer from '../../../../components/footer/Footer';
 
@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="de-CH">
 			<body className={robotoFlex.className}>
-				<Header />
+				<HeaderSinglePost />
 				{children}
 				<Footer />
 			</body>
