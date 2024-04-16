@@ -10,10 +10,10 @@ import ImageSlider from './ImageSlider';
 import Video from './Video';
 // import youtube video component
 import YouTubeVideo from './YouTubeVideo';
-// import BlocksRenderer component
-//import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 // import custom blocks renderer (for content block, which is a rich text field)
 import CustomBlocksRenderer from './CustomBlocksRenderer';
+// import styles
+import styles from '../../styles/components/BlogPost.module.scss';
 
 // define blog post component
 // extract slug property with params argument
@@ -107,12 +107,14 @@ export default async function BlogPost({ params }) {
 			{post.map((item) => (
 				// set unique key attribute to post item id
 				<div key={item.id}>
-					<Image
-						src={fullImageURL}
-						alt={coverImageAlt}
-						width="500"
-						height="400"
-					/>
+					<div className={styles.container}>
+						<Image
+							src={fullImageURL}
+							alt={coverImageAlt}
+							className={styles.container__coverImage}
+							fill={true}
+						/>
+					</div>
 					<h1>{item.attributes.Title}</h1>
 					<p>{item.attributes.Date}</p>
 					<p>{item.attributes.Intro}</p>
