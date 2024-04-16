@@ -21,6 +21,7 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="de-CH">
 			<body className={robotoFlex.className}>
+				<Header />
 				{children}
 				<Footer />
 			</body>
