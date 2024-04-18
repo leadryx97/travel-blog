@@ -72,18 +72,28 @@ export default async function Post() {
 }
 */
 export async function generateStaticParams() {
-	const response = await fetch('http://localhost:1337/api/posts');
-	const data = await response.json();
-	return data.data.map((post) => ({
-		slug: String(post.attributes.slug),
-	}));
+	try {
+		const response = await fetch(`http://127.0.0.1:1337/api/posts/`);
+		if (!response.ok) {
+			throw new Error('Failed to fetch posts');
+		}
+		const data = await response.json();
+		return data.data.map((post) => ({
+			params: {
+				slug: String(post.attributes.slug),
+			},
+		}));
+	} catch (error) {
+		console.error('Error fetching posts:', error);
+		return [];
+	}
 }
 
 export default async function BlogPost({ params }) {
 	const { slug } = params;
 	console.log('slug:', slug);
 	const response = await fetch(`
-	http://localhost:1337/api/posts/`);
+	http://127.0.0.1:1337/api/posts/`);
 	const postData = await response.json();
 	console.log('post:', postData);
 

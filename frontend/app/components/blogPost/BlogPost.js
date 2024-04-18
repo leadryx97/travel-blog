@@ -21,14 +21,19 @@ export default async function BlogPost({ params }) {
 	const { slug } = params;
 	// fetch blog post data from strapi api
 	const response = await fetch(
-		`http://localhost:1337/api/posts/?[filters][slug]=${slug}&populate[0]=CoverImage&populate[1]=CoverImage.url&populate=Blocks&populate=Blocks.SingleImage.data.attributes.url&populate=Blocks.ImageSlider.data&populate=Blocks.Video.data.attributes.url`
+		`http://127.0.0.1:1337/api/posts/?[filters][slug]=${slug}&populate[0]=CoverImage&populate[1]=CoverImage.url&populate=Blocks&populate=Blocks.SingleImage.data.attributes.url&populate=Blocks.ImageSlider.data&populate=Blocks.Video.data.attributes.url`
 	);
+
 	// parse json data from the response body
 	const postData = await response.json();
 	// variable for post data object
-	const post = postData.data;
+	const post = postData.data[0];
+	console.log('Post:', post);
+	const title = post.attributes.Title;
+	console.log('Titel:', title);
 	// variable for cover image
-	const coverImage = post[0].attributes.CoverImage;
+	const coverImage = post.attributes.CoverImage;
+	console.log('Cover Image:', coverImage);
 	// variable for cover image url
 	const coverImageUrl = coverImage.data.attributes.url;
 	// variable for full cover image url
@@ -36,7 +41,7 @@ export default async function BlogPost({ params }) {
 	// variable for cover image alt text
 	const coverImageAlt = coverImage.data.attributes.alternativeText;
 	// variable for dynamic zone (blocks)
-	const blocks = post[0].attributes.Blocks;
+	const blocks = post.attributes.Blocks;
 
 	// empty array for single image block urls
 	const singleImgBlockURLs = [];
@@ -52,9 +57,9 @@ export default async function BlogPost({ params }) {
 	const youtubeVideoId = [];
 
 	// check if youtube video is present in post
-	if (post[0].attributes.oembed) {
+	if (post.attributes.oembed) {
 		// parse JSON object of embedded video
-		const oembedData = JSON.parse(post[0].attributes.oembed);
+		const oembedData = JSON.parse(post.attributes.oembed);
 		// extract video ID from the YouTube URL
 		const urlParts = oembedData.url.split('v=');
 		// add
@@ -100,70 +105,66 @@ export default async function BlogPost({ params }) {
 			videoBlockURLs.push(videoBlockURL);
 		}
 	});
-
 	return (
 		<div>
 			{/* map function on post array to iterate over each blog post item */}
-			{post.map((item) => (
-				// set unique key attribute to post item id
-				<div key={item.id}>
-					<div className={styles.container}>
-						<Image
-							src={fullImageURL}
-							alt={coverImageAlt}
-							className={styles.container__coverImage}
-							fill={true}
-						/>
-					</div>
-					<h1>{item.attributes.Title}</h1>
-					<p>{item.attributes.Date}</p>
-					<p>{item.attributes.Intro}</p>
 
-					{/* Render the BlocksRenderer with the content from the post */}
-					<CustomBlocksRenderer content={item.attributes.Content} />
-
-					{/* create youtube embed url with video id */}
-					{item.attributes.oembed && (
-						<YouTubeVideo
-							url={`https://www.youtube.com/embed/${youtubeVideoId}`}
-							title={item.attributes.Title}
-						/>
-					)}
-
-					{/* Iterate over the dynamicZone blocks */}
-					{item.attributes.Blocks.map((block, index) => {
-						// Switch based on the __component value of each block
-						switch (block.__component) {
-							case 'post.image-slider':
-								return (
-									<ImageSlider
-										key={index}
-										images={ImageSliderElements[index]}
-									/>
-								);
-							// if there is a text block in the dynamic zone, render TextBlock component
-							case 'post.text':
-								return <TextBlock key={index} text={block.Text} />;
-							// if there is a single image block in the dynamic zone, render SingleImage commponent
-							case 'post.single-image':
-								return (
-									<SingleImage
-										key={index}
-										imgSrc={singleImgBlockURLs[index]}
-										imgAlt={singleImgBlockAltText[index]}
-										imgCaption={singleImgBlockCaption[index]}
-									/>
-								);
-							// if there is a video block in the dynamic zone, render Video component
-							case 'post.video':
-								return <Video key={index} url={videoBlockURLs[index]} />;
-							// Add cases for other components as needed
-							default:
-								return null;
-						}
-					})}
+			{/* set unique key attribute to post item id */}
+			<div key={post.id}>
+				<div className={styles.container}>
+					{/*<Image
+						src={fullImageURL}
+						alt={coverImageAlt}
+						className={styles.container__coverImage}
+						fill={true}
+					/>*/}
+					<img src={fullImageURL} alt="alt" height="200" width="300" />
 				</div>
-			))}
+				<h1>{post.attributes.Title}</h1>
+				<p>{post.attributes.Date}</p>
+				<p>{post.attributes.Intro}</p>
+
+				{/* Render the BlocksRenderer with the content from the post */}
+				<CustomBlocksRenderer content={post.attributes.Content} />
+
+				{/* create youtube embed url with video id */}
+				{post.attributes.oembed && (
+					<YouTubeVideo
+						url={`https://www.youtube.com/embed/${youtubeVideoId}`}
+						title={post.attributes.Title}
+					/>
+				)}
+
+				{/* Iterate over the dynamicZone blocks */}
+				{post.attributes.Blocks.map((block, index) => {
+					// Switch based on the __component value of each block
+					switch (block.__component) {
+						case 'post.image-slider':
+							return (
+								<ImageSlider key={index} images={ImageSliderElements[index]} />
+							);
+						// if there is a text block in the dynamic zone, render TextBlock component
+						case 'post.text':
+							return <TextBlock key={index} text={block.Text} />;
+						// if there is a single image block in the dynamic zone, render SingleImage commponent
+						case 'post.single-image':
+							return (
+								<SingleImage
+									key={index}
+									imgSrc={singleImgBlockURLs[index]}
+									imgAlt={singleImgBlockAltText[index]}
+									imgCaption={singleImgBlockCaption[index]}
+								/>
+							);
+						// if there is a video block in the dynamic zone, render Video component
+						case 'post.video':
+							return <Video key={index} url={videoBlockURLs[index]} />;
+						// Add cases for other components as needed
+						default:
+							return null;
+					}
+				})}
+			</div>
 		</div>
 	);
 }
