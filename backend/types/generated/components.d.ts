@@ -1,5 +1,16 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface PostContent extends Schema.Component {
+  collectionName: 'components_post_contents';
+  info: {
+    displayName: 'Content';
+    icon: 'message';
+  };
+  attributes: {
+    Content: Attribute.Blocks;
+  };
+}
+
 export interface PostImageSlider extends Schema.Component {
   collectionName: 'components_post_image_sliders';
   info: {
@@ -55,6 +66,7 @@ export interface PostYouTubeVideo extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'post.content': PostContent;
       'post.image-slider': PostImageSlider;
       'post.single-image': PostSingleImage;
       'post.text': PostText;

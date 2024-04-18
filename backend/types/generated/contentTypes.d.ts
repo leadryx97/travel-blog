@@ -385,7 +385,8 @@ export interface ApiPostPost extends Schema.CollectionType {
         'post.single-image',
         'post.text',
         'post.video',
-        'post.you-tube-video'
+        'post.you-tube-video',
+        'post.content'
       ]
     >;
     oembed: Attribute.Text & Attribute.CustomField<'plugin::oembed.oembed'>;
