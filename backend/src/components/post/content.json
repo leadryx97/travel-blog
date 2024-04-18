@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_post_contents",
+  "info": {
+    "displayName": "Content",
+    "icon": "message"
+  },
+  "options": {},
+  "attributes": {
+    "Content": {
+      "type": "blocks"
+    }
+  }
+}
