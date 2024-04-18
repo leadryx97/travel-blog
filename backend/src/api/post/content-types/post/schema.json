@@ -43,7 +43,8 @@
         "post.single-image",
         "post.text",
         "post.video",
-        "post.you-tube-video"
+        "post.you-tube-video",
+        "post.content"
       ]
     },
     "oembed": {
@@ -52,8 +53,8 @@
     },
     "slug": {
       "type": "uid",
-      "targetField": "Title",
-      "required": true
+      "required": true,
+      "targetField": "Title"
     }
   }
 }
