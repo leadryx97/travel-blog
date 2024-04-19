@@ -33,9 +33,6 @@
       "type": "date",
       "required": true
     },
-    "Content": {
-      "type": "blocks"
-    },
     "Blocks": {
       "type": "dynamiczone",
       "components": [
