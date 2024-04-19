@@ -8,7 +8,14 @@
 	height: 350px;
 	width: 100vw;
 	position: relative;
+	z-index: -1;
+	/* Image component not working in dev 
 	&__coverImage {
+		object-fit: cover;
+	} */
+	&__coverImg {
+		height: 350px;
+		width: 100vw;
 		object-fit: cover;
 	}
 }
