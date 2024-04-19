@@ -2,6 +2,8 @@
 import Image from 'next/image';
 // import text block component
 import TextBlock from './TextBlock';
+// import intro component
+import Intro from './Intro';
 // import single image component
 import SingleImage from './SingleImage';
 // import image slider component
@@ -21,23 +23,20 @@ export default async function BlogPost({ params }) {
 	const { slug } = params;
 	// fetch blog post data from strapi api
 	const response = await fetch(
-		`http://127.0.0.1:1337/api/posts/?[filters][slug]=${slug}&populate[0]=CoverImage&populate[1]=CoverImage.url&populate=Blocks&populate=Blocks.SingleImage.data.attributes.url&populate=Blocks.ImageSlider.data&populate=Blocks.Video.data.attributes.url`
+		`http://127.0.0.1:1337/api/posts/?[filters][slug]=${slug}&populate[0]=CoverImage&populate[1]=CoverImage.url&populate=Blocks&populate=Blocks.SingleImage.data.attributes.url&populate=Blocks.ImageSlider.data&populate=Blocks.Video.data.attributes.url&cacheBuster=${Date.now()}`
 	);
 
 	// parse json data from the response body
 	const postData = await response.json();
 	// variable for post data object
 	const post = postData.data[0];
-	console.log('Post:', post);
-	const title = post.attributes.Title;
-	console.log('Titel:', title);
 	// variable for cover image
 	const coverImage = post.attributes.CoverImage;
-	console.log('Cover Image:', coverImage);
 	// variable for cover image url
 	const coverImageUrl = coverImage.data.attributes.url;
+	console.log('Cover Image URL:', coverImageUrl);
 	// variable for full cover image url
-	const fullImageURL = 'http://localhost:1337' + coverImageUrl;
+	const fullImageURL = 'http://127.0.0.1:1337' + coverImageUrl;
 	// variable for cover image alt text
 	const coverImageAlt = coverImage.data.attributes.alternativeText;
 	// variable for dynamic zone (blocks)
@@ -73,9 +72,10 @@ export default async function BlogPost({ params }) {
 			// get the url of the single image block
 			const singleImageBlock = block.SingleImage.data.attributes.url;
 			// create full url of the image
-			const singleImageBlockURL = 'http://localhost:1337' + singleImageBlock;
+			const singleImageBlockURL = 'http://127.0.0.1:1337' + singleImageBlock;
 			// add url to the singleImgBlockURLs array
 			singleImgBlockURLs.push(singleImageBlockURL);
+			console.log('Single Img Block:', singleImgBlockURLs);
 
 			// get alternative text of single image block
 			const singleImageBlockAlt =
@@ -94,39 +94,43 @@ export default async function BlogPost({ params }) {
 			const ImageSliderData = block.ImageSlider.data;
 			// add data of image slider to the ImageSliderElements array
 			ImageSliderElements.push(ImageSliderData);
+			console.log('Image Slider:', ImageSliderElements);
 		}
 		// Check if the block is a video component and if video property exists
 		else if (block.__component === 'post.video' && block.Video) {
 			// get url of video component
 			const videoBlock = block.Video.data.attributes.url;
 			// create fuil url of the video
-			const videoBlockURL = 'http://localhost:1337' + videoBlock;
+			const videoBlockURL = 'http://127.0.0.1:1337' + videoBlock;
 			// add video url to the videoBlockURLs array
 			videoBlockURLs.push(videoBlockURL);
 		}
 	});
 	return (
 		<div>
-			{/* map function on post array to iterate over each blog post item */}
-
 			{/* set unique key attribute to post item id */}
 			<div key={post.id}>
 				<div className={styles.container}>
-					{/*<Image
+					{/* Image component not working in dev
+					<Image
 						src={fullImageURL}
 						alt={coverImageAlt}
 						className={styles.container__coverImage}
 						fill={true}
 					/>*/}
-					<img src={fullImageURL} alt="alt" height="200" width="300" />
+					<img
+						src={fullImageURL}
+						alt={coverImageAlt}
+						className={styles.container__coverImg}
+						height="200"
+						width="300"
+					/>
 				</div>
-				<h1>{post.attributes.Title}</h1>
-				<p>{post.attributes.Date}</p>
-				<p>{post.attributes.Intro}</p>
-
-				{/* Render the BlocksRenderer with the content from the post */}
-				<CustomBlocksRenderer content={post.attributes.Content} />
-
+				<Intro
+					title={post.attributes.Title}
+					date={post.attributes.Date}
+					intro={post.attributes.Intro}
+				/>
 				{/* create youtube embed url with video id */}
 				{post.attributes.oembed && (
 					<YouTubeVideo
@@ -140,20 +144,33 @@ export default async function BlogPost({ params }) {
 					// Switch based on the __component value of each block
 					switch (block.__component) {
 						case 'post.image-slider':
-							return (
-								<ImageSlider key={index} images={ImageSliderElements[index]} />
-							);
+							// Ensure the ImageSlider component exists
+							if (block.ImageSlider) {
+								return (
+									<ImageSlider
+										key={index}
+										images={block.ImageSlider.data} // Pass the data directly to the ImageSlider component
+									/>
+								);
+							} else {
+								return null;
+							}
 						// if there is a text block in the dynamic zone, render TextBlock component
 						case 'post.text':
 							return <TextBlock key={index} text={block.Text} />;
+						// if there is a content block in the dynamic zone, render TextBlock component
+						case 'post.content':
+							return <CustomBlocksRenderer content={block.Content} />;
 						// if there is a single image block in the dynamic zone, render SingleImage commponent
 						case 'post.single-image':
+							console.log('Single Image Data return:', singleImgBlockURLs);
+							const currentIndex = singleImgBlockURLs.length - 1; // Get the index for the current block
 							return (
 								<SingleImage
 									key={index}
-									imgSrc={singleImgBlockURLs[index]}
-									imgAlt={singleImgBlockAltText[index]}
-									imgCaption={singleImgBlockCaption[index]}
+									imgSrc={singleImgBlockURLs[currentIndex]} // Use currentIndex instead of index
+									imgAlt={singleImgBlockAltText[currentIndex]} // Use currentIndex instead of index
+									imgCaption={singleImgBlockCaption[currentIndex]} // Use currentIndex instead of index
 								/>
 							);
 						// if there is a video block in the dynamic zone, render Video component
