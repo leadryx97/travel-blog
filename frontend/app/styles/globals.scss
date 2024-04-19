@@ -21,7 +21,7 @@
 		$base-line-height
 	); // multiplies basis font size times 3.8, basis line height
 	font-family: $heading-font;
-	color: $txt-primary; // white
+	color: $txt-secondary; // white
 	text-align: center;
 	// styles for small screens, > 576px
 	@include for-size(small) {
