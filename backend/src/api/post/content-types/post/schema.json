@@ -52,6 +52,12 @@
       "type": "uid",
       "required": true,
       "targetField": "Title"
+    },
+    "Day": {
+      "type": "string",
+      "regex": "Tag",
+      "unique": true,
+      "required": true
     }
   }
 }
