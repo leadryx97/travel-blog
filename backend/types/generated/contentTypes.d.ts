@@ -378,7 +378,6 @@ export interface ApiPostPost extends Schema.CollectionType {
     CoverImage: Attribute.Media & Attribute.Required;
     Intro: Attribute.Text & Attribute.Required;
     Date: Attribute.Date & Attribute.Required;
-    Content: Attribute.Blocks;
     Blocks: Attribute.DynamicZone<
       [
         'post.image-slider',
