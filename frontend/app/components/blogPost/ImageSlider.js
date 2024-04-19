@@ -6,7 +6,7 @@ export function ImageItem({ imgSrc, imgAlt, imgCaption }) {
 	// <Image src={imgSrc} alt={imgAlt} width="500" height="400" />
 	return (
 		<figure>
-			<img src={imgSrc} alt={imgAlt} width="500" height="400" />
+			<img src={imgSrc} alt={imgAlt} width="300" height="200" />
 
 			<figcaption>{imgCaption}</figcaption>
 		</figure>
