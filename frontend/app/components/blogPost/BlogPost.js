@@ -15,7 +15,7 @@ import YouTubeVideo from './YouTubeVideo';
 // import custom blocks renderer (for content block, which is a rich text field)
 import CustomBlocksRenderer from './CustomBlocksRenderer';
 // import styles
-import styles from '../../styles/components/BlogPost.module.scss';
+import styles from '../../styles/components/blogPost/BlogPost.module.scss';
 
 // define blog post component
 // extract slug property with params argument
@@ -129,6 +129,7 @@ export default async function BlogPost({ params }) {
 				<Intro
 					title={post.attributes.Title}
 					date={post.attributes.Date}
+					day={post.attributes.Day}
 					intro={post.attributes.Intro}
 				/>
 				{/* create youtube embed url with video id */}
@@ -138,49 +139,50 @@ export default async function BlogPost({ params }) {
 						title={post.attributes.Title}
 					/>
 				)}
-
-				{/* Iterate over the dynamicZone blocks */}
-				{post.attributes.Blocks.map((block, index) => {
-					// Switch based on the __component value of each block
-					switch (block.__component) {
-						case 'post.image-slider':
-							// Ensure the ImageSlider component exists
-							if (block.ImageSlider) {
+				<div className={styles.blocksContainer}>
+					{/* Iterate over the dynamicZone blocks */}
+					{post.attributes.Blocks.map((block, index) => {
+						// Switch based on the __component value of each block
+						switch (block.__component) {
+							case 'post.image-slider':
+								// Ensure the ImageSlider component exists
+								if (block.ImageSlider) {
+									return (
+										<ImageSlider
+											key={index}
+											images={block.ImageSlider.data} // Pass the data directly to the ImageSlider component
+										/>
+									);
+								} else {
+									return null;
+								}
+							// if there is a text block in the dynamic zone, render TextBlock component
+							case 'post.text':
+								return <TextBlock key={index} text={block.Text} />;
+							// if there is a content block in the dynamic zone, render TextBlock component
+							case 'post.content':
+								return <CustomBlocksRenderer content={block.Content} />;
+							// if there is a single image block in the dynamic zone, render SingleImage commponent
+							case 'post.single-image':
+								console.log('Single Image Data return:', singleImgBlockURLs);
+								const currentIndex = singleImgBlockURLs.length - 1; // Get the index for the current block
 								return (
-									<ImageSlider
+									<SingleImage
 										key={index}
-										images={block.ImageSlider.data} // Pass the data directly to the ImageSlider component
+										imgSrc={singleImgBlockURLs[currentIndex]} // Use currentIndex instead of index
+										imgAlt={singleImgBlockAltText[currentIndex]} // Use currentIndex instead of index
+										imgCaption={singleImgBlockCaption[currentIndex]} // Use currentIndex instead of index
 									/>
 								);
-							} else {
+							// if there is a video block in the dynamic zone, render Video component
+							case 'post.video':
+								return <Video key={index} url={videoBlockURLs[index]} />;
+							// Add cases for other components as needed
+							default:
 								return null;
-							}
-						// if there is a text block in the dynamic zone, render TextBlock component
-						case 'post.text':
-							return <TextBlock key={index} text={block.Text} />;
-						// if there is a content block in the dynamic zone, render TextBlock component
-						case 'post.content':
-							return <CustomBlocksRenderer content={block.Content} />;
-						// if there is a single image block in the dynamic zone, render SingleImage commponent
-						case 'post.single-image':
-							console.log('Single Image Data return:', singleImgBlockURLs);
-							const currentIndex = singleImgBlockURLs.length - 1; // Get the index for the current block
-							return (
-								<SingleImage
-									key={index}
-									imgSrc={singleImgBlockURLs[currentIndex]} // Use currentIndex instead of index
-									imgAlt={singleImgBlockAltText[currentIndex]} // Use currentIndex instead of index
-									imgCaption={singleImgBlockCaption[currentIndex]} // Use currentIndex instead of index
-								/>
-							);
-						// if there is a video block in the dynamic zone, render Video component
-						case 'post.video':
-							return <Video key={index} url={videoBlockURLs[index]} />;
-						// Add cases for other components as needed
-						default:
-							return null;
-					}
-				})}
+						}
+					})}
+				</div>
 			</div>
 		</div>
 	);
