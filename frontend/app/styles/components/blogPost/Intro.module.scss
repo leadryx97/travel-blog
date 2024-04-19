@@ -1,0 +1,30 @@
+// import variables
+@import '../../abstracts/variables.module';
+// import mixins
+@import '../../abstracts/mixins.module';
+// import globals
+@import '../../globals.scss';
+
+// styles for intro component
+.intro {
+	background-color: $bg-primary;
+	color: $txt-secondary;
+	padding: 25px;
+	font-weight: $font-bold;
+	&__dateContainer {
+		display: flex;
+		justify-content: space-between;
+	}
+	&__text {
+		margin: 0px 0px 10px 0px;
+	}
+}
+
+.h1--blogPost {
+	text-align: center;
+	margin: 0;
+	@include font-size(
+		$base-font-size * 2.2,
+		$base-line-height
+	); // multiplies basis font size times 3.8, basis line height
+}
