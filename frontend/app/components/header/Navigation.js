@@ -52,24 +52,6 @@ export default function Nav() {
 								Beiträge
 							</Link>
 						</li>
-						<li className={styles.nav__item}>
-							<Link
-								href="/route"
-								onClick={() => setNav(!nav)}
-								className={styles.nav__link}
-							>
-								Route
-							</Link>
-						</li>
-						<li className={styles.nav__item}>
-							<Link
-								href="/galerie"
-								onClick={() => setNav(!nav)}
-								className={styles.nav__link}
-							>
-								Galerie
-							</Link>
-						</li>
 					</ul>
 				</div>
 			</nav>
