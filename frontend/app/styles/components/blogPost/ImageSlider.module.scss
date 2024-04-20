@@ -1,0 +1,47 @@
+// import variables
+@import '../../abstracts/variables.module';
+// import mixins
+@import '../../abstracts/mixins.module';
+
+.ImageSlider {
+	&__item {
+		width: 100%;
+		object-fit: cover;
+		@include for-size(medium) {
+			max-height: 730px;
+		}
+		@include for-size(large) {
+			width: 75vw;
+			margin: auto;
+		}
+		@include for-size(x-large) {
+			width: 60vw;
+			max-height: 650px;
+		}
+		@include for-size(xx-large) {
+			width: 55vw;
+		}
+	}
+	&__caption {
+		margin: 0 0 50px 0;
+		text-align: center;
+	}
+}
+
+// styles for slick slider
+// arrows
+/*
+.ImageSlider.slick-slider.slick-arrow.slick-next {
+	right: 10px !important;
+	background-color: red;
+}
+
+.slick-arrow.slick-prev {
+	display: none !important;
+}
+
+.imageSliderArrow {
+	color: black;
+	right: 0;
+}
+*/
