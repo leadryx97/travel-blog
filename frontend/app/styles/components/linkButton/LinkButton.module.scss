@@ -1,0 +1,13 @@
+// import variables
+@import '../../abstracts/variables.module';
+// import mixins
+@import '../../abstracts/mixins.module';
+
+.btn {
+	background-color: $btn-secondary;
+	padding: 12px 25px;
+	color: $btn-txt;
+	text-decoration: none;
+	font-weight: $font-bold;
+	border-radius: 25px;
+}
