@@ -1,5 +1,5 @@
+// use client component
 'use client';
-
 // import styles
 import styles from '../../styles/components/Header.module.scss';
 // import next.js image component
