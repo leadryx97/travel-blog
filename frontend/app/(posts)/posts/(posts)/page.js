@@ -1,3 +1,5 @@
+import BlogPostList from '@/app/components/blogPostList/BlogPostList';
+
 /*// import qs library
 import qs from 'qs';
 // import next.js image component
@@ -93,9 +95,9 @@ export default async function BlogPost({ params }) {
 	const { slug } = params;
 	console.log('slug:', slug);
 	const response = await fetch(`
-	http://127.0.0.1:1337/api/posts/`);
+	http://127.0.0.1:1337/api/posts?cacheBuster=${Date.now()}&populate[0]=CoverImage&populate[1]=CoverImage.url`);
 	const postData = await response.json();
-	console.log('post:', postData);
+	console.log('post Data List:', postData);
 
 	const post = postData.data;
 
@@ -103,15 +105,29 @@ export default async function BlogPost({ params }) {
 
 	return (
 		<div>
-			<h1>Blog Post</h1>
-			<div>
-				{post.map((item) => (
+			{post.map((item) => {
+				// variable for cover image
+				const coverImage = item.attributes.CoverImage;
+				// variable for cover image url
+				const coverImageUrl = coverImage.data.attributes.url;
+				// variable for full cover image url
+				const fullImageURL = 'http://127.0.0.1:1337' + coverImageUrl;
+				// variable for cover image alt text
+				const coverImageAlt = coverImage.data.attributes.alternativeText;
+
+				return (
 					<div key={item.id}>
-						<h1>{item.attributes.Title}</h1>
-						{/* Render other post data here */}
+						<BlogPostList
+							imgSrc={fullImageURL}
+							imgAlt={coverImageAlt}
+							date={item.attributes.Date}
+							day={item.attributes.Day}
+							title={item.attributes.Title}
+							slug={item.attributes.slug}
+						/>
 					</div>
-				))}
-			</div>
+				);
+			})}
 		</div>
 	);
 }
