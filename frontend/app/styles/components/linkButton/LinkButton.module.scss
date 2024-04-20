@@ -10,4 +10,34 @@
 	text-decoration: none;
 	font-weight: $font-bold;
 	border-radius: 25px;
+	// all posts button on home page
+	&--allPosts {
+		background-color: $btn-primary;
+		color: $txt-secondary;
+	}
+}
+// all posts button container on home page
+.btnContainer {
+	display: flex;
+	justify-content: center;
+	margin: 30px auto;
+}
+
+// arrow down ccontainer on home page
+.arrowContainer {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 20px;
+	@include for-size(large) {
+		margin-bottom: 40px;
+	}
+}
+// arrow down on home page
+.arrowDown {
+	width: 40px;
+	height: 40px;
+	@include for-size(large) {
+		width: 45px;
+		height: 45px;
+	}
 }
