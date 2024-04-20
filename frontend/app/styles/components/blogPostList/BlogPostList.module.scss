@@ -1,0 +1,90 @@
+// import variables
+@import '../../abstracts/variables.module';
+// import mixins
+@import '../../abstracts/mixins.module';
+// import globals for h2
+@import '../../globals.scss';
+
+.postListItem {
+	background-color: $bg-primary;
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	&__link {
+		text-decoration: none;
+		color: $txt-secondary;
+	}
+	&__container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		padding: 0 25px;
+		@include for-size(small) {
+			padding: 0 45px;
+		}
+		@include for-size(medium) {
+			padding: 0 170px;
+		}
+		@include for-size(large) {
+			padding: 0 270px;
+		}
+		@include for-size(x-large) {
+			padding: 0 410px;
+		}
+		@include for-size(xx-large) {
+			padding: 0 500px;
+		}
+	}
+	&__date {
+		display: flex;
+		justify-content: space-between;
+		padding: 0 25px;
+		@include for-size(small) {
+			padding: 0 45px;
+		}
+		@include for-size(medium) {
+			padding: 0 20px;
+			justify-content: space-around;
+		}
+		@include for-size(large) {
+			padding: 0 120px;
+		}
+		@include for-size(x-large) {
+			padding: 0 250px;
+		}
+		@include for-size(xx-large) {
+			padding: 0 350px;
+		}
+	}
+	&__btn {
+		margin-bottom: 25px;
+	}
+}
+
+.postListImg {
+	width: 100vw;
+	height: 200px;
+	object-fit: cover;
+	@include for-size(small) {
+		height: 280px;
+	}
+	@include for-size(medium) {
+		height: 350px;
+	}
+	@include for-size(large) {
+		height: 400px;
+	}
+	@include for-size(x-large) {
+		height: 480px;
+	}
+	@include for-size(xx-large) {
+		height: 520px;
+	}
+}
+
+.p--postList {
+	margin-bottom: 0;
+	font-weight: $font-bold;
+}
