@@ -1,0 +1,35 @@
+// import variables
+@import '../../abstracts/variables.module';
+// import mixins
+@import '../../abstracts/mixins.module';
+
+.singleImg {
+	margin: 0;
+	@include for-size(large) {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+	}
+	&__item {
+		width: 100vw;
+		object-fit: cover;
+		@include for-size(medium) {
+			max-height: 730px;
+		}
+		@include for-size(large) {
+			width: 75vw;
+		}
+		@include for-size(x-large) {
+			width: 60vw;
+			max-height: 650px;
+		}
+		@include for-size(xx-large) {
+			width: 55vw;
+		}
+	}
+	&__caption {
+		padding: 10px 25px 15px 25px;
+		margin: 0;
+		text-align: center;
+	}
+}
