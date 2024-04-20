@@ -110,6 +110,7 @@
 		$base-line-height
 	); // multiplies basis font size times 1.9, basis line height
 	font-family: $heading-font;
+	margin: 15px 0;
 	// styles for small screens, > 576px
 	@include for-size(small) {
 		@include font-size(
@@ -121,28 +122,28 @@
 	@include for-size(medium) {
 		@include font-size(
 			$base-font-size * 1.5,
-			$base-line-height
+			$base-line-height / 1.3
 		); // multiplies basis font size times 1.5, basis line height
 	}
 	// styles for large screens, > 992px
 	@include for-size(large) {
 		@include font-size(
 			$base-font-size * 1.3,
-			$base-line-height
+			$base-line-height / 1.4
 		); // multiplies basis font size times 1.3, basis line height
 	}
 	// styles for x-large screens, > 1200px
 	@include for-size(x-large) {
 		@include font-size(
 			$base-font-size * 1.1,
-			$base-line-height
+			$base-line-height / 1.35
 		); // multiplies basis font size times 1.1, basis line height
 	}
 	// styles for xx-large screens, > 1400px
 	@include for-size(xx-large) {
 		@include font-size(
 			$base-font-size * 1,
-			$base-line-height
+			$base-line-height / 1.4
 		); // multiplies basis font size times 1.1, basis line height
 	}
 }
@@ -152,6 +153,7 @@
 		$base-line-height
 	); // multiplies basis font size times 1.5, basis line height
 	font-family: $heading-font;
+	margin: 15px 0;
 	// styles for small screens, > 576px
 	@include for-size(small) {
 		@include font-size(
@@ -194,6 +196,7 @@
 		$base-line-height
 	); // multiplies basis font size times 1.3, basis line height
 	font-family: $heading-font;
+	margin: 15px 0;
 	// styles for small screens, > 576px
 	@include for-size(small) {
 		@include font-size(
@@ -239,35 +242,35 @@
 	@include for-size(small) {
 		@include font-size(
 			$base-font-size * 0.9,
-			$base-line-height
+			$base-line-height / 1.15
 		); // multiplies basis font size times 0.9, basis line height
 	}
 	// styles for medium screens, > 768px
 	@include for-size(medium) {
 		@include font-size(
 			$base-font-size * 0.85,
-			$base-line-height
+			$base-line-height / 1.1
 		); // multiplies basis font size times 1, basis line height
 	}
 	// styles for large screens, > 992px
 	@include for-size(large) {
 		@include font-size(
 			$base-font-size * 0.75,
-			$base-line-height
+			$base-line-height / 1.3
 		); // multiplies basis font size times 0.9s, basis line height
 	}
 	// styles for x-large screens, > 1200px
 	@include for-size(x-large) {
 		@include font-size(
 			$base-font-size * 0.7,
-			$base-line-height
+			$base-line-height / 1.3
 		); // multiplies basis font size times 0.8, basis line height
 	}
 	// styles for xx-large screens, > 1400px
 	@include for-size(xx-large) {
 		@include font-size(
 			$base-font-size * 0.7,
-			$base-line-height
+			$base-line-height / 1.4
 		); // multiplies basis font size times 0.8, basis line height
 	}
 }
