@@ -1,3 +1,10 @@
+// import styles
+import styles from '../../styles/components/blogPost/YouTubeVideo.module.scss';
+
 export default function YouTubeVideo({ url, title }) {
-	return <iframe title={title} src={url} width="560" height="315" />;
+	return (
+		<div className={styles.youTubeContainer}>
+			<iframe title={title} src={url} className={styles.youtubeVideo} />;
+		</div>
+	);
 }
