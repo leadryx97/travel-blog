@@ -157,3 +157,4 @@ backend/.strapi
 backend/dist
 backend/build
 backend/.strapi-updater.json
+.vercel
