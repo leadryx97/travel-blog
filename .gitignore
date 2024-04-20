@@ -158,3 +158,4 @@ backend/dist
 backend/build
 backend/.strapi-updater.json
 .vercel
+backend/package-lock.json
