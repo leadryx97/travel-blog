@@ -11,6 +11,21 @@
 	color: $txt-secondary;
 	padding: 25px;
 	font-weight: $font-bold;
+	@include for-size(large) {
+		width: 75vw;
+		position: relative;
+		top: 250px;
+		margin-bottom: 250px;
+	}
+	@include for-size(x-large) {
+		top: 380px;
+		margin-bottom: 380px;
+		width: 60vw;
+		padding: 40px;
+	}
+	@include for-size(xx-large) {
+		width: 55vw;
+	}
 	&__dateContainer {
 		display: flex;
 		justify-content: space-between;
@@ -27,4 +42,13 @@
 		$base-font-size * 2.2,
 		$base-line-height
 	); // multiplies basis font size times 3.8, basis line height
+	@include for-size(small) {
+		@include font-size(
+			$base-font-size * 1.8,
+			$base-line-height / 1.5
+		); // multiplies basis font size times 1.8, divides base line height by 1.5
+	}
+	@include for-size(medium) {
+		margin-bottom: 20px;
+	}
 }
