@@ -1,12 +1,16 @@
 {
   "name": "backend",
-  "private": true,
   "version": "0.1.0",
+  "private": true,
   "description": "A Strapi application",
+  "license": "MIT",
+  "author": {
+    "name": "A Strapi developer"
+  },
   "scripts": {
+    "build": "strapi build",
     "develop": "strapi develop",
     "start": "strapi start",
-    "build": "strapi build",
     "strapi": "strapi"
   },
   "dependencies": {
@@ -24,15 +28,11 @@
     "styled-components": "5.3.3",
     "tar": "^7.0.0"
   },
-  "author": {
-    "name": "A Strapi developer"
+  "engines": {
+    "node": "19.9.0",
+    "npm": "9.6.3"
   },
   "strapi": {
     "uuid": "d4042a56-ef7b-4102-9812-4c507ea62319"
-  },
-  "engines": {
-    "node": ">=18.0.0 <=20.x.x",
-    "npm": ">=6.0.0"
-  },
-  "license": "MIT"
+  }
 }
