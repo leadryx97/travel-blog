@@ -23,7 +23,7 @@ export default async function BlogPost({ params }) {
 	const { slug } = params;
 	// fetch blog post data from strapi api
 	const response = await fetch(
-		`http://127.0.0.1:1337/api/posts/?[filters][slug]=${slug}&populate[0]=CoverImage&populate[1]=CoverImage.url&populate=Blocks&populate=Blocks.SingleImage.data.attributes.url&populate=Blocks.ImageSlider.data&populate=Blocks.Video.data.attributes.url&cacheBuster=${Date.now()}`
+		`https://peaceful-citadel-90180-369fa539b5ab.herokuapp.com/api/posts/?[filters][slug]=${slug}&populate[0]=CoverImage&populate[1]=CoverImage.url&populate=Blocks&populate=Blocks.SingleImage.data.attributes.url&populate=Blocks.ImageSlider.data&populate=Blocks.Video.data.attributes.url&cacheBuster=${Date.now()}`
 	);
 
 	// parse json data from the response body
@@ -36,7 +36,8 @@ export default async function BlogPost({ params }) {
 	const coverImageUrl = coverImage.data.attributes.url;
 	console.log('Cover Image URL:', coverImageUrl);
 	// variable for full cover image url
-	const fullImageURL = 'http://127.0.0.1:1337' + coverImageUrl;
+	const fullImageURL =
+		'https://peaceful-citadel-90180-369fa539b5ab.herokuapp.com' + coverImageUrl;
 	// variable for cover image alt text
 	const coverImageAlt = coverImage.data.attributes.alternativeText;
 	// variable for dynamic zone (blocks)
@@ -72,7 +73,9 @@ export default async function BlogPost({ params }) {
 			// get the url of the single image block
 			const singleImageBlock = block.SingleImage.data.attributes.url;
 			// create full url of the image
-			const singleImageBlockURL = 'http://127.0.0.1:1337' + singleImageBlock;
+			const singleImageBlockURL =
+				'https://peaceful-citadel-90180-369fa539b5ab.herokuapp.com' +
+				singleImageBlock;
 			// add url to the singleImgBlockURLs array
 			singleImgBlockURLs.push(singleImageBlockURL);
 			console.log('Single Img Block:', singleImgBlockURLs);
@@ -100,7 +103,9 @@ export default async function BlogPost({ params }) {
 			// get url of video component
 			const videoBlock = block.Video.data.attributes.url;
 			// create fuil url of the video
-			const videoBlockURL = 'http://127.0.0.1:1337' + videoBlock;
+			const videoBlockURL =
+				'https://peaceful-citadel-90180-369fa539b5ab.herokuapp.com' +
+				videoBlock;
 			// add video url to the videoBlockURLs array
 			videoBlockURLs.push(videoBlockURL);
 		}

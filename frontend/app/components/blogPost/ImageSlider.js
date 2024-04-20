@@ -71,7 +71,10 @@ export default function ImageSlider({ images }) {
 				{images.map((image, index) => (
 					<ImageItem
 						key={index}
-						imgSrc={'http://127.0.0.1:1337' + image.attributes.url}
+						imgSrc={
+							'https://peaceful-citadel-90180-369fa539b5ab.herokuapp.com' +
+							image.attributes.url
+						}
 						imgAlt={image.attributes.alternativeText}
 						imgCaption={image.attributes.caption}
 					/>

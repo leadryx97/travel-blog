@@ -4,7 +4,9 @@ import BlogPost from '../../../../components/blogPost/BlogPost';
 // function to generate static paths for blog posts based on their slugs
 export async function generateStaticParams() {
 	// fetch blog post data from strapi api
-	const response = await fetch('http://127.0.0.1:1337/api/posts');
+	const response = await fetch(
+		'https://peaceful-citadel-90180-369fa539b5ab.herokuapp.com/api/posts'
+	);
 	// parse json data from the response body
 	const postData = await response.json();
 	/* maps over the array of blog post data

@@ -7,7 +7,9 @@ import { FaArrowDownLong } from 'react-icons/fa6';
 
 export async function generateStaticParams() {
 	try {
-		const response = await fetch(`http://127.0.0.1:1337/api/posts/`);
+		const response = await fetch(
+			`https://peaceful-citadel-90180-369fa539b5ab.herokuapp.com/api/posts/`
+		);
 		if (!response.ok) {
 			throw new Error('Failed to fetch posts');
 		}
@@ -27,7 +29,7 @@ export default async function BlogPost({ params }) {
 	const { slug } = params;
 	console.log('slug:', slug);
 	const response = await fetch(`
-	http://127.0.0.1:1337/api/posts?sort=id:desc&pagination[page]=1&pagination[pageSize]=3&filter=&cacheBuster=${Date.now()}&populate[0]=CoverImage&populate[1]=CoverImage.url`);
+	https://peaceful-citadel-90180-369fa539b5ab.herokuapp.com/api/posts?sort=id:desc&pagination[page]=1&pagination[pageSize]=3&filter=&cacheBuster=${Date.now()}&populate[0]=CoverImage&populate[1]=CoverImage.url`);
 	const postData = await response.json();
 	console.log('post Data List:', postData);
 
@@ -47,7 +49,9 @@ export default async function BlogPost({ params }) {
 				// variable for cover image url
 				const coverImageUrl = coverImage.data.attributes.url;
 				// variable for full cover image url
-				const fullImageURL = 'http://127.0.0.1:1337' + coverImageUrl;
+				const fullImageURL =
+					'https://peaceful-citadel-90180-369fa539b5ab.herokuapp.com' +
+					coverImageUrl;
 				// variable for cover image alt text
 				const coverImageAlt = coverImage.data.attributes.alternativeText;
 
