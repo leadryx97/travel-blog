@@ -67,7 +67,7 @@ export default async function BlogPost({ params }) {
 
 	// check if block component exists and add data to the corresponding array
 	blocks.forEach((block) => {
-		// Check if the block is a single image component and if SingleImage property exists
+		// check if the block is a single image component and if SingleImage property exists
 		if (block.__component === 'post.single-image' && block.SingleImage) {
 			// get the url of the single image block
 			const singleImageBlock = block.SingleImage.data.attributes.url;
@@ -88,15 +88,14 @@ export default async function BlogPost({ params }) {
 			// add caption to the singleImgBlockCaption array
 			singleImgBlockCaption.push(singleImgCaption);
 		}
-		// Check if the block is a image slider component and if image slider property exists
+		// check if the block is a image slider component and if image slider property exists
 		else if (block.__component === 'post.image-slider' && block.ImageSlider) {
 			// get data of image slider block
 			const ImageSliderData = block.ImageSlider.data;
 			// add data of image slider to the ImageSliderElements array
 			ImageSliderElements.push(ImageSliderData);
-			console.log('Image Slider:', ImageSliderElements);
 		}
-		// Check if the block is a video component and if video property exists
+		// check if the block is a video component and if video property exists
 		else if (block.__component === 'post.video' && block.Video) {
 			// get url of video component
 			const videoBlock = block.Video.data.attributes.url;
@@ -110,28 +109,74 @@ export default async function BlogPost({ params }) {
 		<div>
 			{/* set unique key attribute to post item id */}
 			<div key={post.id}>
-				<div className={styles.container}>
-					{/* Image component not working in dev
+				<div className={styles.containerCoverIntro}>
+					<div className={styles.container}>
+						{/* Image component not working in dev
 					<Image
 						src={fullImageURL}
 						alt={coverImageAlt}
 						className={styles.container__coverImage}
 						fill={true}
 					/>*/}
-					<img
-						src={fullImageURL}
-						alt={coverImageAlt}
-						className={styles.container__coverImg}
-						height="200"
-						width="300"
+						<img
+							src={fullImageURL}
+							alt={coverImageAlt}
+							className={styles.container__coverImg}
+							height="200"
+							width="300"
+						/>
+					</div>
+					<Intro
+						title={post.attributes.Title}
+						date={post.attributes.Date}
+						day={post.attributes.Day}
+						intro={post.attributes.Intro}
 					/>
 				</div>
-				<Intro
-					title={post.attributes.Title}
-					date={post.attributes.Date}
-					day={post.attributes.Day}
-					intro={post.attributes.Intro}
-				/>
+
+				{/* iterate over the dynamicZone blocks */}
+				{post.attributes.Blocks.map((block, index) => {
+					// switch based on the __component value of each block
+					switch (block.__component) {
+						case 'post.image-slider':
+							// ensure the ImageSlider component exists
+							if (block.ImageSlider) {
+								return (
+									<ImageSlider key={index} images={block.ImageSlider.data} />
+								);
+							} else {
+								return null;
+							}
+						// if there is a text block in the dynamic zone, render TextBlock component
+						case 'post.text':
+							return <TextBlock key={index} text={block.Text} />;
+						// if there is a content block in the dynamic zone, render TextBlock component
+						case 'post.content':
+							return (
+								<div className={styles.contentContainer}>
+									<CustomBlocksRenderer content={block.Content} />
+								</div>
+							);
+						// if there is a single image block in the dynamic zone, render SingleImage commponent
+						case 'post.single-image':
+							// get the index for the current block
+							const currentIndex = singleImgBlockURLs.length - 1;
+							return (
+								<SingleImage
+									key={index}
+									imgSrc={singleImgBlockURLs[currentIndex]}
+									imgAlt={singleImgBlockAltText[currentIndex]}
+									imgCaption={singleImgBlockCaption[currentIndex]}
+								/>
+							);
+						// if there is a video block in the dynamic zone, render Video component
+						case 'post.video':
+							return <Video key={index} url={videoBlockURLs[index]} />;
+						// default value
+						default:
+							return null;
+					}
+				})}
 				{/* create youtube embed url with video id */}
 				{post.attributes.oembed && (
 					<YouTubeVideo
@@ -139,50 +184,6 @@ export default async function BlogPost({ params }) {
 						title={post.attributes.Title}
 					/>
 				)}
-				<div className={styles.blocksContainer}>
-					{/* Iterate over the dynamicZone blocks */}
-					{post.attributes.Blocks.map((block, index) => {
-						// Switch based on the __component value of each block
-						switch (block.__component) {
-							case 'post.image-slider':
-								// Ensure the ImageSlider component exists
-								if (block.ImageSlider) {
-									return (
-										<ImageSlider
-											key={index}
-											images={block.ImageSlider.data} // Pass the data directly to the ImageSlider component
-										/>
-									);
-								} else {
-									return null;
-								}
-							// if there is a text block in the dynamic zone, render TextBlock component
-							case 'post.text':
-								return <TextBlock key={index} text={block.Text} />;
-							// if there is a content block in the dynamic zone, render TextBlock component
-							case 'post.content':
-								return <CustomBlocksRenderer content={block.Content} />;
-							// if there is a single image block in the dynamic zone, render SingleImage commponent
-							case 'post.single-image':
-								console.log('Single Image Data return:', singleImgBlockURLs);
-								const currentIndex = singleImgBlockURLs.length - 1; // Get the index for the current block
-								return (
-									<SingleImage
-										key={index}
-										imgSrc={singleImgBlockURLs[currentIndex]} // Use currentIndex instead of index
-										imgAlt={singleImgBlockAltText[currentIndex]} // Use currentIndex instead of index
-										imgCaption={singleImgBlockCaption[currentIndex]} // Use currentIndex instead of index
-									/>
-								);
-							// if there is a video block in the dynamic zone, render Video component
-							case 'post.video':
-								return <Video key={index} url={videoBlockURLs[index]} />;
-							// Add cases for other components as needed
-							default:
-								return null;
-						}
-					})}
-				</div>
 			</div>
 		</div>
 	);
