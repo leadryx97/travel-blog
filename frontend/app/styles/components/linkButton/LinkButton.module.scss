@@ -2,6 +2,8 @@
 @import '../../abstracts/variables.module';
 // import mixins
 @import '../../abstracts/mixins.module';
+// import globals for h1
+@import '../../globals.scss';
 
 .btn {
 	background-color: $btn-secondary;
