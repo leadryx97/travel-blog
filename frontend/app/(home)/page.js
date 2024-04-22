@@ -48,17 +48,13 @@ export default async function BlogPost({ params }) {
 				const coverImage = item.attributes.CoverImage;
 				// variable for cover image url
 				const coverImageUrl = coverImage.data.attributes.url;
-				// variable for full cover image url
-				const fullImageURL =
-					'https://peaceful-citadel-90180-369fa539b5ab.herokuapp.com' +
-					coverImageUrl;
 				// variable for cover image alt text
 				const coverImageAlt = coverImage.data.attributes.alternativeText;
 
 				return (
 					<div key={item.id}>
 						<BlogPostList
-							imgSrc={fullImageURL}
+							imgSrc={coverImageUrl}
 							imgAlt={coverImageAlt}
 							date={item.attributes.Date}
 							day={item.attributes.Day}
