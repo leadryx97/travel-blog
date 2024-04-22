@@ -34,10 +34,6 @@ export default async function BlogPost({ params }) {
 	const coverImage = post.attributes.CoverImage;
 	// variable for cover image url
 	const coverImageUrl = coverImage.data.attributes.url;
-	console.log('Cover Image URL:', coverImageUrl);
-	// variable for full cover image url
-	const fullImageURL =
-		'https://peaceful-citadel-90180-369fa539b5ab.herokuapp.com' + coverImageUrl;
 	// variable for cover image alt text
 	const coverImageAlt = coverImage.data.attributes.alternativeText;
 	// variable for dynamic zone (blocks)
@@ -71,14 +67,9 @@ export default async function BlogPost({ params }) {
 		// check if the block is a single image component and if SingleImage property exists
 		if (block.__component === 'post.single-image' && block.SingleImage) {
 			// get the url of the single image block
-			const singleImageBlock = block.SingleImage.data.attributes.url;
-			// create full url of the image
-			const singleImageBlockURL =
-				'https://peaceful-citadel-90180-369fa539b5ab.herokuapp.com' +
-				singleImageBlock;
+			const singleImageBlockUrl = block.SingleImage.data.attributes.url;
 			// add url to the singleImgBlockURLs array
-			singleImgBlockURLs.push(singleImageBlockURL);
-			console.log('Single Img Block:', singleImgBlockURLs);
+			singleImgBlockURLs.push(singleImageBlockUrl);
 
 			// get alternative text of single image block
 			const singleImageBlockAlt =
@@ -102,12 +93,9 @@ export default async function BlogPost({ params }) {
 		else if (block.__component === 'post.video' && block.Video) {
 			// get url of video component
 			const videoBlock = block.Video.data.attributes.url;
-			// create fuil url of the video
-			const videoBlockURL =
-				'https://peaceful-citadel-90180-369fa539b5ab.herokuapp.com' +
-				videoBlock;
 			// add video url to the videoBlockURLs array
-			videoBlockURLs.push(videoBlockURL);
+			videoBlockURLs.push(videoBlock);
+			console.log('Video URL:', videoBlockURLs);
 		}
 	});
 	return (
@@ -124,7 +112,7 @@ export default async function BlogPost({ params }) {
 						fill={true}
 					/>*/}
 						<img
-							src={fullImageURL}
+							src={coverImageUrl}
 							alt={coverImageAlt}
 							className={styles.container__coverImg}
 							height="200"
@@ -176,7 +164,11 @@ export default async function BlogPost({ params }) {
 							);
 						// if there is a video block in the dynamic zone, render Video component
 						case 'post.video':
-							return <Video key={index} url={videoBlockURLs[index]} />;
+							// get the index for the current block
+							const currentVideoIndex = videoBlockURLs.length - 1;
+							return (
+								<Video key={index} url={videoBlockURLs[currentVideoIndex]} />
+							);
 						// default value
 						default:
 							return null;
