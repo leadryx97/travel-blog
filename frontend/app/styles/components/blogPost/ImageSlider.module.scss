@@ -4,13 +4,18 @@
 @import '../../abstracts/mixins.module';
 
 .ImageSlider {
+	margin: 0 !important;
 	&__item {
 		width: 100%;
 		object-fit: cover;
+		@include for-size(small) {
+			max-height: 650px;
+		}
 		@include for-size(medium) {
 			max-height: 730px;
 		}
 		@include for-size(large) {
+			max-height: 650px;
 			width: 75vw;
 			margin: auto;
 		}
@@ -27,21 +32,3 @@
 		text-align: center;
 	}
 }
-
-// styles for slick slider
-// arrows
-/*
-.ImageSlider.slick-slider.slick-arrow.slick-next {
-	right: 10px !important;
-	background-color: red;
-}
-
-.slick-arrow.slick-prev {
-	display: none !important;
-}
-
-.imageSliderArrow {
-	color: black;
-	right: 0;
-}
-*/

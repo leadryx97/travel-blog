@@ -8,13 +8,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700');
 
-/*
-*,
-*:before,
-*:after {
-	box-sizing: border-box;
+// styles for slick image slider arrows
+.slick-next {
+	right: 0 !important;
+	color: $btn-primary !important;
+	padding: 0 10px !important;
+	height: 30px !important;
+	width: 30px !important;
+	margin-right: 10px;
+	background: rgba(255, 255, 255, 0.7) !important;
+	border-radius: 25%;
+	@include for-size(large) {
+		background: none !important;
+		height: 50px !important;
+		width: 50px !important;
+		margin-right: 180px !important;
+	}
+	@include for-size(xx-large) {
+		margin-right: 245px !important;
+	}
 }
-*/
 
 // font
 .h1 {
