@@ -18,7 +18,7 @@ export function ImageItem({ imgSrc, imgAlt, imgCaption }) {
 	// Image component not working in dev
 	// <Image src={imgSrc} alt={imgAlt} width="500" height="400" />
 	return (
-		<figure>
+		<figure className={styles.ImageSlider}>
 			<img src={imgSrc} alt={imgAlt} className={styles.ImageSlider__item} />
 			<figcaption className={styles.ImageSlider__caption}>
 				<p>{imgCaption}</p>
@@ -33,7 +33,7 @@ function SampleNextArrow(props) {
 	return (
 		<FaArrowRightLong
 			className={customClassName}
-			style={{ ...style, right: '0', color: 'black', padding: '0 10px' }}
+			style={{}}
 			onClick={onClick}
 		/>
 	);
@@ -45,7 +45,13 @@ function SamplePrevArrow(props) {
 	return (
 		<FaArrowLeftLong
 			className={customClassName}
-			style={{ ...style, left: '0', color: 'black', padding: '0 10px' }}
+			style={{
+				...style,
+				left: '0',
+				color: 'white',
+				padding: '0 10px',
+				display: 'none',
+			}}
 			onClick={onClick}
 		/>
 	);
