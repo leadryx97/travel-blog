@@ -20,11 +20,12 @@
 			width: 75vw;
 		}
 		@include for-size(x-large) {
-			width: 60vw;
-			max-height: 650px;
+			width: 40vw;
+			max-height: 630px;
 		}
 		@include for-size(xx-large) {
-			width: 55vw;
+			width: 35vw;
+			max-height: 680px;
 		}
 	}
 	&__caption {
