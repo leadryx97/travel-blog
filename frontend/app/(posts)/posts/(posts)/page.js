@@ -1,5 +1,8 @@
 import BlogPostList from '@/app/components/blogPostList/BlogPostList';
 
+// import styles
+import styles from '../../../styles/components/blogPostList/BlogPostList.module.scss';
+
 export async function generateStaticParams() {
 	try {
 		const response = await fetch(
@@ -43,7 +46,7 @@ export default async function BlogPost({ params }) {
 				const coverImageAlt = coverImage.data.attributes.alternativeText;
 
 				return (
-					<div key={item.id}>
+					<div key={item.id} className={styles.blogBostList}>
 						<BlogPostList
 							imgSrc={coverImageUrl}
 							imgAlt={coverImageAlt}

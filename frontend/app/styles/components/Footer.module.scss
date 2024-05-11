@@ -8,6 +8,12 @@
 	background-color: $bg-secondary;
 	display: flex;
 	justify-content: center;
+	@include for-size(x-large) {
+		margin-top: 80px;
+	}
+	@include for-size(xx-large) {
+		margin-top: 50px;
+	}
 	&__text {
 		color: $txt-secondary;
 	}

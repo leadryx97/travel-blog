@@ -25,6 +25,7 @@
 	// styles for x-large screens, > 1200px
 	@include for-size(x-large) {
 		height: 270px;
+		margin-bottom: 80px;
 	}
 	// styles for xx-large screens, > 1400px
 	@include for-size(xx-large) {

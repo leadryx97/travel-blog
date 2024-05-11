@@ -2,6 +2,7 @@ import BlogPostList from '../components/blogPostList/BlogPostList';
 import LinkButton from '../components/linkButton/LinkButton';
 // import styles
 import styles from '../styles/components/linkButton/LinkButton.module.scss';
+import blogStyles from '../styles/components/blogPostList/BlogPostList.module.scss';
 import '../styles/globals.scss';
 // import arrow icon
 import { FaArrowDownLong } from 'react-icons/fa6';
@@ -53,7 +54,7 @@ export default async function BlogPost({ params }) {
 				const coverImageAlt = coverImage.data.attributes.alternativeText;
 
 				return (
-					<div key={item.id}>
+					<div key={item.id} className={blogStyles.blogBostList}>
 						<BlogPostList
 							imgSrc={coverImageUrl}
 							imgAlt={coverImageAlt}
