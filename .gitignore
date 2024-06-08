@@ -159,3 +159,4 @@ backend/build
 backend/.strapi-updater.json
 .vercel
 backend/package-lock.json
+backend/public
