@@ -15,11 +15,28 @@ import '../../../node_modules/slick-carousel/slick/slick-theme.css';
 import styles from '../../styles/components/blogPost/ImageSlider.module.scss';
 
 export function ImageItem({ imgSrc, imgAlt, imgCaption }) {
+	// Find the index of the version segment
+	const versionIndex = imgSrc.lastIndexOf('/v');
+
+	// Extract the base URL and the version segment
+	const baseUrl = imgSrc.substring(0, versionIndex);
+	const versionSegment = imgSrc.substring(versionIndex);
+
+	// Construct the optimized URL by inserting optimization parameters before the version segment
+	const optimizedImgSrc = `${baseUrl}/q_auto,f_auto${versionSegment}`;
+
+	console.log('Original SRC:', imgSrc);
+	console.log('Optimized SRC:', optimizedImgSrc);
+
 	// Image component not working in dev
 	// <Image src={imgSrc} alt={imgAlt} width="500" height="400" />
 	return (
 		<figure className={styles.ImageSlider}>
-			<img src={imgSrc} alt={imgAlt} className={styles.ImageSlider__item} />
+			<img
+				src={optimizedImgSrc}
+				alt={imgAlt}
+				className={styles.ImageSlider__item}
+			/>
 			<figcaption className={styles.ImageSlider__caption}>
 				<p>{imgCaption}</p>
 			</figcaption>
