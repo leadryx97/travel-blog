@@ -104,13 +104,6 @@ export default async function BlogPost({ params }) {
 			<div key={post.id}>
 				<div className={styles.containerCoverIntro}>
 					<div className={styles.container}>
-						{/* Image component not working in dev
-					<Image
-						src={fullImageURL}
-						alt={coverImageAlt}
-						className={styles.container__coverImage}
-						fill={true}
-					/>*/}
 						<img
 							src={coverImageUrl}
 							alt={coverImageAlt}
