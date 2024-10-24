@@ -140,6 +140,7 @@
 		width: 100vw;
 		background-color: $bg-secondary; // light purple
 		position: fixed;
+		z-index: 1;
 		// styles for large screens, > 992px
 		@include for-size(large) {
 			height: 100px;
