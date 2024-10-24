@@ -25,7 +25,8 @@
 		}
 		@include for-size(xx-large) {
 			width: 35vw;
-			max-height: 680px;
+			max-height: 730px;
+			object-position: top;
 		}
 	}
 	&__caption {
