@@ -20,7 +20,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="de-CH">
-			<body className={robotoFlex.className}>
+			<body className={`${robotoFlex.className} body`}>
 				<HeaderSinglePost />
 				{children}
 				<Footer />

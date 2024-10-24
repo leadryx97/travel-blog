@@ -1,9 +1,10 @@
+import '../styles/globals.scss';
 import BlogPostList from '../components/blogPostList/BlogPostList';
 import LinkButton from '../components/linkButton/LinkButton';
 // import styles
 import styles from '../styles/components/linkButton/LinkButton.module.scss';
 import blogStyles from '../styles/components/blogPostList/BlogPostList.module.scss';
-import '../styles/globals.scss';
+
 // import arrow icon
 import { FaArrowDownLong } from 'react-icons/fa6';
 

@@ -8,6 +8,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700');
 
+//body
+.body {
+	overflow-x: hidden;
+}
+
 // styles for slick image slider arrows
 .slick-next {
 	right: 0 !important;
