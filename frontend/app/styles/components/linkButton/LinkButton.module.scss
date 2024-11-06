@@ -25,7 +25,7 @@
 	margin: 30px auto;
 }
 
-// arrow down ccontainer on home page
+// arrow down container on home page
 .arrowContainer {
 	display: flex;
 	justify-content: center;
@@ -38,6 +38,25 @@
 .arrowDown {
 	width: 40px;
 	height: 40px;
+	// initially hide arrow
+	opacity: 0;
+	visibility: hidden;
+	// add animation
+	animation: fadeInUp 1s ease-in-out forwards;
+	// define keyframes
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			visibility: hidden;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			visibility: visible;
+			transform: translateY(0);
+		}
+	}
+	// styles for large screens, > 992px
 	@include for-size(large) {
 		width: 45px;
 		height: 45px;
