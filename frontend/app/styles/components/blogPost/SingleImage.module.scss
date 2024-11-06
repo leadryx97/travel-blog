@@ -5,6 +5,21 @@
 
 .singleImg {
 	margin: 0;
+	// add animation
+	animation: fadeInUp 0.8s ease-in-out forwards;
+	// define keyframes
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			visibility: hidden;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			visibility: visible;
+			transform: translateY(0);
+		}
+	}
 	@include for-size(large) {
 		display: flex;
 		align-items: center;
