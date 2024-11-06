@@ -29,15 +29,60 @@
 	&__dateContainer {
 		display: flex;
 		justify-content: space-between;
+		// add animation
+		animation: fadeInUp 0.8s ease-in-out forwards;
+		// define keyframes
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				visibility: hidden;
+				transform: translateY(20px);
+			}
+			to {
+				opacity: 1;
+				visibility: visible;
+				transform: translateY(0);
+			}
+		}
 	}
 	&__text {
 		margin: 0px 0px 10px 0px;
+		// add animation
+		animation: fadeInUp 0.8s ease-in-out forwards;
+		// define keyframes
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				visibility: hidden;
+				transform: translateY(20px);
+			}
+			to {
+				opacity: 1;
+				visibility: visible;
+				transform: translateY(0);
+			}
+		}
 	}
 }
 
 .h1--blogPost {
 	text-align: center;
 	margin: 0;
+	// add animation
+	animation: fadeInUp 0.8s ease-in-out forwards;
+	// define keyframes
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			visibility: hidden;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			visibility: visible;
+			transform: translateY(0);
+		}
+	}
 	@include font-size(
 		$base-font-size * 2.2,
 		$base-line-height
