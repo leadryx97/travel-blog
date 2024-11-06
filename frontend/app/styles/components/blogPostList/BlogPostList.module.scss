@@ -21,8 +21,18 @@
 	flex-direction: column;
 	align-items: center;
 	margin: auto;
+	// add animation
+	opacity: 0;
+	transform: translateY(20px);
+	transition: opacity 1s ease-out, transform 1s ease-out;
+	// styles for x-large screens, > 1200px
 	@include for-size(x-large) {
 		width: auto;
+	}
+	// add animation for element when visible
+	&--visible {
+		opacity: 1;
+		transform: translateY(0); /* Animate to original position */
 	}
 	&__link {
 		text-decoration: none;
