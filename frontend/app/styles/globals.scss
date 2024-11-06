@@ -44,7 +44,7 @@
 	color: $txt-secondary; // white
 	text-align: center;
 	// add animation
-	animation: fadeInUp 1s ease-in-out forwards;
+	animation: fadeInUp 0.8s ease-in-out forwards;
 	// define keyframes
 	@keyframes fadeInUp {
 		from {
