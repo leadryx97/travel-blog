@@ -44,12 +44,12 @@
 	color: $txt-secondary; // white
 	text-align: center;
 	// add animation
-	animation: fadeInUp 1s ease-in-out forwards;
+	animation: fadeInUp 1s ease-in-out 0.4s forwards;
+	opacity: 0;
+	visibility: hidden;
 	// define keyframes
 	@keyframes fadeInUp {
 		from {
-			opacity: 0;
-			visibility: hidden;
 			transform: translateY(20px);
 		}
 		to {
