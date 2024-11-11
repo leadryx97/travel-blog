@@ -28,7 +28,7 @@ export function ImageItem({ imgSrc, imgAlt, imgCaption }) {
 	const optimizedImgSrc = `${baseUrl}/q_auto,f_auto${versionSegment}`;
 
 	return (
-		<figure>
+		<figure className={styles.ImageSlider__card}>
 			<img
 				src={optimizedImgSrc}
 				alt={imgAlt}
