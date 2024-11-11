@@ -4,7 +4,6 @@
 @import '../../abstracts/mixins.module';
 
 .ImageSlider {
-	margin: 0 !important;
 	// add animation
 	opacity: 0;
 	transform: translateY(20px);
@@ -17,6 +16,9 @@
 	&--visible {
 		opacity: 1;
 		transform: translateY(0);
+	}
+	&__card {
+		margin: 0 !important;
 	}
 	&__item {
 		width: 100%;
