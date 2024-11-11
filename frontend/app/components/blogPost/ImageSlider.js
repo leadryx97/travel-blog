@@ -79,9 +79,6 @@ export default function ImageSlider({ images }) {
 		slidesToShow: 1,
 		slidesToScroll: 1,
 		adaptiveHeight: true,
-		//autoplay: true,
-		//autoplaySpeed: 7000,
-		//pauseOnHover: true,
 		nextArrow: <SampleNextArrow />,
 		prevArrow: <SamplePrevArrow />,
 	};
