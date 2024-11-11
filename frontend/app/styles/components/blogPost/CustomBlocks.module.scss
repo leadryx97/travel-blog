@@ -1,0 +1,27 @@
+// import variables
+@import '../../abstracts/variables.module';
+// import mixins
+@import '../../abstracts/mixins.module';
+
+.txt {
+	// add animation
+	opacity: 0;
+	transform: translateY(20px);
+	&--visible {
+		// define keyframes
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				visibility: hidden;
+				transform: translateY(20px);
+			}
+			to {
+				opacity: 1;
+				visibility: visible;
+				transform: translateY(0);
+			}
+		}
+		// add animation
+		animation: fadeInUp 0.8s ease-in-out forwards;
+	}
+}
