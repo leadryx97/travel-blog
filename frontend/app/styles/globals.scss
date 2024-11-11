@@ -44,7 +44,7 @@
 	color: $txt-secondary; // white
 	text-align: center;
 	// add animation
-	animation: fadeInUp 0.8s ease-in-out forwards;
+	animation: fadeInUp 1s ease-in-out forwards;
 	// define keyframes
 	@keyframes fadeInUp {
 		from {
@@ -103,21 +103,6 @@
 	background: $txt-tertiary; // gradient purple to blue
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
-	// add animation
-	animation: fadeInUp 1s ease-in-out forwards;
-	// define keyframes
-	@keyframes fadeInUp {
-		from {
-			opacity: 0;
-			visibility: hidden;
-			transform: translateY(20px);
-		}
-		to {
-			opacity: 1;
-			visibility: visible;
-			transform: translateY(0);
-		}
-	}
 	// styles for small screens, > 576px
 	@include for-size(small) {
 		@include font-size(
